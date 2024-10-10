@@ -76,6 +76,22 @@ _base on you want to use what schema, mostly public/api_
 supabase gen types --lang=typescript --project-id <project_id> --schema public > supabase/databases/database.types.ts
 ```
 
+### Edge Function
+
+Deno installed required
+
+```bash
+> Create a function
+$
+supabase functions new hello-world
+> Deploy your function
+$
+supabase functions deploy hello-world --project-ref <project_id>
+> Invoke your function
+$
+curl -L -X POST 'https://<project_id>.supabase.co/functions/v1/hello-world' -H 'Authorization: Bearer [YOUR ANON KEY]' --data '{"name":"Functions"}'
+```
+
 ## Reference
 
 - Supabase docs: <https://supabase.com/docs>
