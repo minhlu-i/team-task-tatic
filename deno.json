@@ -1,0 +1,35 @@
+{
+  "tasks": {
+    "start": "supabase functions serve",
+    "test": "deno test supabase/functions/tests/ --allow-env --allow-net",
+    "deploy": "supabase functions deploy",
+    "env:get": "supabase gen keys --project-ref $PROJECT_ID --experimental > .env",
+    "db:generate:type": "supabase gen types --project-id $PROJECT_ID --lang=typescript > supabase/databases/database.types.ts",
+    "db:pull": "supabase db pull --linked --schema extensions,auth,storage,public"
+  },
+  "importMap": "./supabase/functions/import_map.json",
+  "compilerOptions": {
+    "strict": true,
+    "noImplicitAny": true
+  },
+  "lint": {
+    "files": {
+      "include": ["supabase/functions/"]
+    },
+    "rules": {
+      "tags": ["recommended"]
+    }
+  },
+  "fmt": {
+    "files": {
+      "include": ["supabase/functions/"]
+    },
+    "options": {
+      "useTabs": false,
+      "lineWidth": 120,
+      "indentWidth": 2,
+      "singleQuote": true,
+      "proseWrap": "always"
+    }
+  }
+}

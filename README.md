@@ -61,7 +61,7 @@ supabase gen keys --project-id <project_id> --experimental > .env
 ### Supabase Sync Database structure for develop (from cloud to local)
 
 ```bash
-supabase gen types --lang=typescript --project-id <project_id> --schema public > supabase/databases/database.types.ts
+supabase gen types --lang=typescript --project-ref <project_id> --schema public > supabase/databases/database.types.ts
 ```
 
 ### Edge Function
@@ -77,6 +77,14 @@ $ supabase functions deploy hello-world --project-ref <project_id>
 
 > Invoke your function
 $ curl -L -X POST 'https://<project_id>.supabase.co/functions/v1/hello-world' -H 'Authorization: Bearer [YOUR ANON KEY]' --data '{"name":"Functions"}'
+```
+
+## Deno
+
+lint:
+
+```bash
+deno lint
 ```
 
 ## Reference

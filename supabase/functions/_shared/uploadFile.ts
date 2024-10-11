@@ -28,6 +28,7 @@ export async function uploadFile(
     .from(bucket)
     .upload(filePath, file);
 
+  if (data) console.log("File uploaded successfully");
   if (error) throw new Error(error.message);
 
   // Get file public URL
