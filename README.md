@@ -8,17 +8,21 @@ It contains a few examples of how to use the Supabase client to interact with a 
 The project is structured as follows:
 
 ```txt
-├── actions
-│   ├── clients // contains the client-side actions using the Supabase client. FOR TEST ONLY
-│   │   ├── login.ts
-│   │   ├── signup.ts
-│   │   └── update-profiles.ts
-│   └── urls // contains the client-side actions using urls RESTful API. FOR TEST ONLY
-│       ├── login.ts
-│       └── signup.ts
 ├── supabase
-│   ├── migrations // migration file
-│   │   ├── ...
+│   ├── functions
+│   │   ├── import_map.json # A top-level import map to use across functions.
+│   │   ├── _shared
+│   │   │   ├── supabaseAdmin.ts # Supabase client with SERVICE_ROLE key.
+│   │   │   ├── supabaseClient.ts # Supabase client with ANON key.
+│   │   │   └── cors.ts # Reusable CORS headers.
+│   │   ├── function-one # Use hyphens to name functions.
+│   │   │   └── index.ts
+│   │   ├── function-two
+│   │   │   └── index.ts
+│   │   └── tests
+│   │       ├── function-one-test.ts
+│   │       └── function-two-test.ts
+│   ├── migrations
 │   └── config.toml
 ├── package.json
 ├── pnpm-lock.yaml
@@ -26,26 +30,18 @@ The project is structured as follows:
 └── tsconfig.json
 ```
 
+***Naming Functions (edge)***
+
+We recommend using hyphens to name functions
+because hyphens are the most URL-friendly of all the naming conventions.
+
 ## Install Command
 
-To install the project, run the following command:
-
-- Install pnpm
+Install Deno and Supabase:
 
 ```bash
-npm install -g pnpm
-```
-
-- Install the project
-
-```bash
-pnpm install
-```
-
-- To run any file of test
-
-```bash
-pnpm ts-node path/to/file.ts
+brew install deno # or follow the instructions at https://docs.deno.com/runtime/
+brew install supabase/tap/supabase # or follow the instructions at https://supabase.com/docs/guides/local-development/cli/getting-started
 ```
 
 ## Supabase CLI
@@ -59,18 +55,10 @@ To use the Supabase CLI, run the following docs:
 To use supabase cli generate a .env file with variables:
 
 ```bash
-supabase gen keys --experimental > .env
+supabase gen keys --project-id <project_id> --experimental > .env
 ```
 
-Variables uses in this sample project
-
-- `SUPABASE_URL`: the URL of the Supabase instance
-- `SUPABASE_ANON_KEY`: the anonymous key for the Supabase instance
-
 ### Supabase Sync Database structure for develop (from cloud to local)
-
-_Login supabase first!_
-_base on you want to use what schema, mostly public/api_
 
 ```bash
 supabase gen types --lang=typescript --project-id <project_id> --schema public > supabase/databases/database.types.ts
@@ -82,14 +70,13 @@ Deno installed required
 
 ```bash
 > Create a function
-$
-supabase functions new hello-world
+$ supabase functions new hello-world
+
 > Deploy your function
-$
-supabase functions deploy hello-world --project-ref <project_id>
+$ supabase functions deploy hello-world --project-ref <project_id>
+
 > Invoke your function
-$
-curl -L -X POST 'https://<project_id>.supabase.co/functions/v1/hello-world' -H 'Authorization: Bearer [YOUR ANON KEY]' --data '{"name":"Functions"}'
+$ curl -L -X POST 'https://<project_id>.supabase.co/functions/v1/hello-world' -H 'Authorization: Bearer [YOUR ANON KEY]' --data '{"name":"Functions"}'
 ```
 
 ## Reference
@@ -97,3 +84,4 @@ curl -L -X POST 'https://<project_id>.supabase.co/functions/v1/hello-world' -H '
 - Supabase docs: <https://supabase.com/docs>
 - Supabase cli: <https://supabase.com/docs/reference/cli/>
 - Generating TypeScript Types: <https://supabase.com/docs/guides/api/rest/generating-types>
+- Edge functions & folder structure: <https://supabase.com/docs/guides/functions/quickstart>
