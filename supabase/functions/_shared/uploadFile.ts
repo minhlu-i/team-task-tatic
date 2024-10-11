@@ -4,6 +4,9 @@ import { SupabaseClient } from "@supabase/supabase-js";
  * Upload a file to a given bucket in Supabase Storage
  *   1. Make sure you have created a bucket in Supabase Storage and configured the appropriate permissions.
  *   2. Security: Make sure you have configured the correct permissions in Supabase Storage to prevent unauthorized access.
+ *
+ * If we want to upload a file for team only, upload to bucket 'team-files' and folder: ${teamId}/filename.txt
+ *
  * @param {File} file - The file to upload
  * @param {string} bucket - The name of the bucket to upload the file to
  * @param {string} [folder=""] - The path to the folder to upload the file to. Optional if you want to organize the files in folders.
