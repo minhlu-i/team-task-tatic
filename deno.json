@@ -5,7 +5,8 @@
     "deploy": "supabase functions deploy",
     "env:get": "supabase gen keys --project-ref $PROJECT_ID --experimental > .env",
     "db:generate:type": "supabase gen types --project-id $PROJECT_ID --lang=typescript > supabase/databases/database.types.ts",
-    "db:pull": "supabase db pull --linked --schema extensions,auth,storage,public"
+    "db:pull": "supabase db pull --linked --schema extensions,auth,storage,public",
+    "run:ts": "deno run --allow-net --allow-env --allow-read"
   },
   "importMap": "./supabase/functions/import_map.json",
   "compilerOptions": {
@@ -28,6 +29,7 @@
       "useTabs": false,
       "lineWidth": 120,
       "indentWidth": 2,
+      "tabWidth": 2,
       "singleQuote": true,
       "proseWrap": "always"
     }

@@ -3,6 +3,7 @@
     "@supabase/supabase-js": "https://esm.sh/@supabase/supabase-js@2.39.3",
     "std/": "https://deno.land/std@0.208.0/",
     "gifencoder": "https://esm.sh/gifencoder@2.0.1",
-    "canvas": "https://esm.sh/canvas@2.11.2"
+    "canvas": "https://esm.sh/canvas@2.11.2",
+    "dotenv": "https://deno.land/std@0.190.0/dotenv/mod.ts"
   }
 }
